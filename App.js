@@ -6,6 +6,7 @@ export default function App(props) {
   const [number, setNumber] = useState();
   const [guess, setGuess] = useState('');
   const [result, setResult] = useState('');
+  const [guessCount, setGuessCount] = useState(1);
 
   const setRandomNumber = () => {
     const randomNumber = Math.floor(Math.random() * 100) + 1;
@@ -13,11 +14,14 @@ export default function App(props) {
     console.log({randomNumber});
     setGuess('');
     setResult('');
+    setGuessCount(1);
   };
 
   const checkRandomNumber = () => {
+    setGuessCount(guessCount + 1);
+
     if (guess === number) {
-      setResult("Oikein!\n" + "Numero oli " + number + "!");
+      Alert.alert("Numero oli " + number + "!\nArvasit sen " + guessCount + " arvauksella.");
     } else if (guess < number) {
       setResult("Arvauksesi oli liian pieni!");
     } else if (guess > number) {
